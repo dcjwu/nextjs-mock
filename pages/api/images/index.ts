@@ -9,7 +9,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
 
    .get(async (req: NextApiRequest, res: NextApiResponse) => {
       s3.listObjects({
-         Bucket: process.env.S3_UPLOAD_BUCKETS ?? "",
+         Bucket: process.env.S3_UPLOAD_BUCKET ?? "",
          Delimiter: "/uploads"
       }, (err, data) => {
          if (err) return res.status(400).end(err.message)
