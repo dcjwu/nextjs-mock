@@ -1,3 +1,91 @@
 {
-  "extends": "next/core-web-vitals"
+   "env": {
+      "browser": true,
+      "node": true
+   },
+   "settings": {
+      "import/resolver": { "node": { "extension": [ ".ts, .tsx" ] } }
+   },
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "ecmaFeatures": { "jsx": true, "modules": true },
+      "project": [ "./tsconfig.json" ],
+      "tsconfigRootDir": "./"
+   },
+   "ignorePatterns": [ "*.json" ],
+   "plugins": [
+      "@typescript-eslint",
+      "import",
+      "react"
+   ],
+   "extends": [
+      "next/core-web-vitals",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/strict",
+      "plugin:import/recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime"
+   ],
+   "parser": "@typescript-eslint/parser",
+   "rules": {
+      "no-constant-binary-expression": "error",
+      "no-duplicate-imports": "error",
+      "no-template-curly-in-string": "error",
+      "no-use-before-define": "error",
+      "camelcase": "error",
+      "eqeqeq": "error",
+      "func-names": "error",
+      "no-console": [ "error", { "allow": [ "warn", "error", "table" ] } ],
+      "no-return-await": "error",
+      "no-unneeded-ternary": "error",
+      "arrow-parens": [ "error", "as-needed" ],
+      "arrow-spacing": "error",
+      "brace-style": [ "error", "stroustrup" ],
+      "comma-dangle": "error",
+      "comma-spacing": [ "error", { "before": false, "after": true } ],
+      "eol-last": "error",
+      "indent": [ "error", 3 ],
+      "jsx-quotes": [ "error", "prefer-double" ],
+      "no-extra-parens": "error",
+      "no-multi-spaces": "error",
+      "no-multiple-empty-lines": "error",
+      "object-curly-newline": [
+         "error", {
+            "ObjectExpression": { "multiline": true, "minProperties": 3 },
+            "ObjectPattern": { "multiline": true, "minProperties": 5 },
+            "ImportDeclaration": "never",
+            "ExportDeclaration": "never"
+         }
+      ],
+      "object-curly-spacing": [ "error", "always" ],
+      "quotes": [ "error", "double" ],
+      "semi": [ "error", "never" ],
+      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/require-await": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unnecessary-condition": "off",
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "react/jsx-boolean-value": [ "error", "never" ],
+      "react/jsx-max-props-per-line": [ 1, { "maximum": { "single": 3, "multi": 3 } } ],
+      "react/jsx-sort-props": [
+         1, {
+            "callbacksLast": true,
+            "shorthandFirst": true,
+            "ignoreCase": true,
+            "reservedFirst": [ "key", "ref", "dangerouslySetInnerHTML" ]
+         }
+      ],
+      "react/prop-types": "off",
+      "import/order": [
+         "error",
+         {
+            "groups": [ "builtin", "external", "internal", "type" ],
+            "pathGroups": [ { "pattern": "react", "group": "external", "position": "before" } ],
+            "pathGroupsExcludedImportTypes": [ "react" ],
+            "newlines-between": "always",
+            "alphabetize": { "order": "asc", "caseInsensitive": true }
+         }
+      ]
+   }
 }
