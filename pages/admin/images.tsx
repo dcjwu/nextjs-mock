@@ -1,17 +1,16 @@
 import axios, { AxiosError } from "axios"
 import Image from "next/image"
 
+import Error from "@pages/_error"
+
+import type { ErrorMessageType } from "@customTypes/common"
 import type { IImage } from "@interfaces/image.interface"
 import type { GetServerSideProps, NextPage } from "next"
 
-import Error from "./_error"
-
 type ImagesPageType = {
    images?: IImage[],
-   serverErrorMessage: string
+   serverErrorMessage: ErrorMessageType
 }
-
-//https://gurureal-mock.imgix.net/uploads/419c8bb1-07a0-423a-bdbe-cc91e1e59d98.jpg?mark=https://gurureal-test-bucket.s3.eu-north-1.amazonaws.com/logo_w3a2-final.png&mark-alpha=20&mark-tile=grid&mark-pad=0
 
 const Images: NextPage<ImagesPageType> = ({ images, serverErrorMessage }): JSX.Element => {
 

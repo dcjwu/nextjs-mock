@@ -1,11 +1,14 @@
 import { createRouter } from "next-connect"
 
+import { authMiddleware } from "@middlewares/auth.middleware"
 import { s3 } from "@services/aws"
 
 import type { IImage } from "@interfaces/image.interface"
 import type { NextApiRequest, NextApiResponse } from "next"
 
 const router = createRouter<NextApiRequest, NextApiResponse>()
+   
+   .use(authMiddleware)
 
    .get(async (req: NextApiRequest, res: NextApiResponse) => {
       s3.listObjects({

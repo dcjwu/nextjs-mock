@@ -1,5 +1,6 @@
 import { createRouter } from "next-connect"
 
+import { authMiddleware } from "@middlewares/auth.middleware"
 import { prisma } from "@services/prisma"
 
 import type { IUser } from "@interfaces/user.interface"
@@ -13,7 +14,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
 //Password - forgot, change password
 
 router
-// .use(adminMiddleware)
+   .use(authMiddleware)
 
    .get(async (req: NextApiRequest, res: NextApiResponse) => {
       const users: IUser[] = await prisma.user.findMany({

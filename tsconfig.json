@@ -18,10 +18,15 @@
       "incremental": true,
       "baseUrl": ".",
       "paths": {
+         "@pages/*": ["pages/*"],
          "@components/*": [ "src/components/*" ],
+         "@context/*": [ "src/context/*" ],
          "@interfaces/*": [ "src/interfaces/*" ],
+         "@layouts/*": [ "src/layouts/*" ],
+         "@lib/*": [ "src/lib/*" ],
          "@middlewares/*": [ "src/middlewares/*" ],
          "@services/*": [ "src/services/*" ],
+         "@customTypes/*": [ "src/types/*" ],
          "@utils/*": [ "src/utils/*" ]
       }
    },

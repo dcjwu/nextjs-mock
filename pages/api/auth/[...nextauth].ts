@@ -1,7 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import bcrypt from "bcrypt"
-import NextAuth, { NextAuthOptions, Session, User } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth, { NextAuthOptions, Session } from "next-auth"
+import EmailProvider from "next-auth/providers/email"
 
 import { prisma } from "@services/prisma"
 
@@ -12,63 +11,58 @@ const timeAlive = 15 * 60 // Session will be idle after 15min of inactivity
 export const authOptions: NextAuthOptions = {
    adapter: PrismaAdapter(prisma),
    providers: [
-      CredentialsProvider({
-         name: "emailAndPassword",
-         credentials: {
-            email: {
-               label: "Email", type: "email", "placeholder": "email@email.com" 
-            },
-            password: { label: "Password", type: "password" }
+      EmailProvider({
+         server: {
+            host: process.env.SMTP_HOST,
+            port: Number(process.env.SMTP_PORT),
+            auth: {
+               user: process.env.SMTP_USER,
+               pass: process.env.SMTP_PASSWORD
+            }
          },
-         async authorize(credentials): Promise<User | null> {
-            try {
-               if (!credentials) return null
-
-               const user = await prisma.user.findUnique({ where: { email: credentials.email } })
-               if (!user) return null
-
-               const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password)
-               if (isPasswordCorrect) return user
-
-               return null
-
-            }
-            catch (err) {
-               return null
-            }
-         }
+         from: process.env.SMTP_FROM
       })
    ],
    pages: {
-      signIn: "/auth/login", error: "auth/login", signOut: "/auth/logout" 
+      signIn: "/login",
+      error: "/login"
+   },
+   callbacks: {
+      /**
+       * Throws an error if user not found in a database
+       * @param user - Current User object
+       */
+      async signIn({ user }) {
+         if (user.email) {
+            const currentUser = await prisma.user.findUnique({ where: { email: user.email } })
+            if (!currentUser) return false
+         }
+
+         return true
+      },
+      /**
+       * Returns modified session
+       * @param session - NextAuth Session object
+       */
+      async session({ session }): Promise<Session> {
+         if (session.user?.email) {
+            const currentUser = await prisma.user.findUnique({ where: { email: session.user.email } })
+            if (!currentUser) return session
+            
+            session.user.id = currentUser.id
+            session.user.imageUrl = currentUser.imageUrl
+            session.user.role = currentUser.role
+            return session
+         }
+
+         else return session
+      }
    },
    session: {
       strategy: "jwt",
       maxAge: timeAlive
    },
-   callbacks: {
-      async redirect(data) {
-         return data.baseUrl
-      },
-      async session({ session }): Promise<Session> {
-         try {
-            if (session.user.email) {
-               const currentUser = await prisma.user.findUnique({ where: { email: session.user.email } })
-               if (!currentUser) return session
-
-               session.user.id = currentUser.id
-               session.user.imageUrl = currentUser.imageUrl
-               session.user.role = currentUser.role
-               return session
-
-            } return session
-
-         }
-         catch (err) {
-            return session
-         }
-      }
-   }
+   secret: process.env.NEXTAUTH_SECRET
 }
 
 export default NextAuth(authOptions)

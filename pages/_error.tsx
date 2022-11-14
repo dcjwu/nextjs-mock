@@ -1,10 +1,9 @@
 import React from "react"
 
-import type { NextPage } from "next"
+import { Typography } from "@mui/material"
 
-export type ErrorPageType = {
-   serverErrorMessage: string
-}
+import type { ErrorPageType } from "@customTypes/pages"
+import type { NextPage } from "next"
 
 const Error: NextPage<ErrorPageType> = ({ serverErrorMessage }): JSX.Element => {
 
@@ -20,7 +19,7 @@ const Error: NextPage<ErrorPageType> = ({ serverErrorMessage }): JSX.Element => 
    return (
       <>
          {isDisplay &&
-            <h1>{serverErrorMessage}</h1>}
+            <Typography color="error" component="p" variant="h2">{serverErrorMessage}</Typography>}
       </>
    )
 }
