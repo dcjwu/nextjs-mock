@@ -1,6 +1,5 @@
 import { createRouter } from "next-connect"
 
-import { authMiddleware } from "@middlewares/auth.middleware"
 import { s3 } from "@services/aws"
 
 import type { IImage } from "@interfaces/image.interface"
