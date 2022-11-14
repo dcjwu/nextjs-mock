@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["gurureal-mock.imgix.net"]
+    domains: ["ik.imagekit.io"]
   }
 }
 
