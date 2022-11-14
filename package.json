@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
@@ -36,6 +37,7 @@
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-react": "^7.31.10"
+    "eslint-plugin-react": "^7.31.10",
+    "husky": "^8.0.0"
   }
 }
