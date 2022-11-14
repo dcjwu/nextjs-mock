@@ -3,8 +3,6 @@ import React from "react"
 import { useS3Upload } from "next-s3-upload"
 import Image from "next/image"
 
-//Dropdown depending on user role to upload watermark or images
-
 export const ImageUploader: React.FC = (): JSX.Element => {
 
    const {

@@ -1,6 +1,5 @@
 import { createRouter } from "next-connect"
 
-import { adminMiddleware } from "@middlewares/admin.middleware"
 import { prisma } from "@services/prisma"
 
 import type { IUser } from "@interfaces/user.interface"
@@ -14,24 +13,17 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
 //Password - forgot, change password
 
 router
-   .use(adminMiddleware)
+// .use(adminMiddleware)
 
    .get(async (req: NextApiRequest, res: NextApiResponse) => {
-      try {
-         const users: IUser[] = await prisma.user.findMany({
-            select: {
-               id: true,
-               name: true,
-               email: true
-            }
-         })
-         return res.status(200).json(users)
-         
-      }
-      catch (err) {
-         if (err instanceof Error) return res.status(400).json(err.message)
-         return res.status(500).end("Internal server error")
-      }
+      const users: IUser[] = await prisma.user.findMany({
+         select: {
+            id: true,
+            name: true,
+            email: true
+         }
+      })
+      return res.status(200).json(users)
    })
 
 export default router.handler({

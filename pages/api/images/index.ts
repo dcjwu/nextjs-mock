@@ -12,6 +12,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
          Bucket: process.env.S3_UPLOAD_BUCKET ?? "",
          Delimiter: "/uploads"
       }, (err, data) => {
+
          if (err) return res.status(400).end(err.message)
 
          if (data.Contents !== undefined) {
@@ -26,7 +27,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>()
             return res.status(200).json(images)
          }
 
-         return res.status(400).end("Something went wrong with S3")
+         return res.status(400).end("Something went wrong with AWS S3")
       })
    })
 

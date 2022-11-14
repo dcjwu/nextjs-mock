@@ -13,7 +13,7 @@
       "project": [ "./tsconfig.json" ],
       "tsconfigRootDir": "./"
    },
-   "ignorePatterns": [ "*.json" ],
+   "ignorePatterns": [ "*.json", "next.config.js" ],
    "plugins": [
       "@typescript-eslint",
       "import",

@@ -1,28 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "downlevelIteration": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@middlewares/*": ["src/middlewares/*"],
-      "@services/*": ["src/services/*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+   "compilerOptions": {
+      "target": "es5",
+      "lib": [ "dom", "dom.iterable", "esnext" ],
+      "types": [ "jest" ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "downlevelIteration": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "preserve",
+      "incremental": true,
+      "baseUrl": ".",
+      "paths": {
+         "@components/*": [ "src/components/*" ],
+         "@interfaces/*": [ "src/interfaces/*" ],
+         "@middlewares/*": [ "src/middlewares/*" ],
+         "@services/*": [ "src/services/*" ],
+         "@utils/*": [ "src/utils/*" ]
+      }
+   },
+   "include": [ "next-env.d.ts", "**/*.ts", "**/*.tsx" ],
+   "exclude": [ "node_modules" ]
 }

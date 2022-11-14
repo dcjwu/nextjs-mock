@@ -2,7 +2,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:14.5
-    container_name: pdf-generator_db
+    container_name: realestate_mock_db
     environment:
       POSTGRES_DB: $DB_NAME
       POSTGRES_USER: $DB_USER
