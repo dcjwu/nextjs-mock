@@ -61,7 +61,7 @@ export const LoginForm: React.FC<LoginFormType> = ({ errorMessage }): JSX.Elemen
                Login
             </Typography>
 
-            {error && <Typography color="error">s
+            {error && <Typography color="error">
                {error}
             </Typography>}
 
