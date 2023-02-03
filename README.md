@@ -1,3 +1,5 @@
-__November 2022.__ Initial structure for API service and admin dashboard of a real estate application.
+To run development server and database in Docker container:
 
-#### After cloning the project start it by executing this command: ```make up```
+```
+make up
+```
